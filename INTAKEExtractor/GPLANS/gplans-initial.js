@@ -180,6 +180,19 @@ document.addEventListener('DOMContentLoaded', function() {
             historyOf.push("prediabetes or type 2 diabetes");
         }
 
+        // Extract shipping address
+        let shippingAddress = 'X';
+        let hasPOBox = false;
+        const addressMatch = intakeData.match(/Please list shipping address \(No PO boxes\)\n(.+)/);
+        
+        if (addressMatch) {
+            shippingAddress = addressMatch[1].trim();
+            
+            // Check for PO Box in different formats (case insensitive)
+            const poBoxRegex = /p\.?\s*o\.?\s*box|po\s*box|p\s*o\s*box/i;
+            hasPOBox = poBoxRegex.test(shippingAddress);
+        }
+
         // Format the result
         const result = `
             <h1>GPlans/FuturHealth Initial Visit Processing</h1>
@@ -244,6 +257,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 `<span style="background-color:#FFFF00">History of: drug and alcohol misuse</span>` :
                 `Denies drug and alcohol misuse`}
             </p>
+
+             <h3><strong>Shipping Address</strong></h3>
+            <p>
+            ${hasPOBox ? 
+                `<span style="background-color:#FFFF00">${shippingAddress}</span><br><span style="background-color:#FFFF00">Providers Note: Need to confirm patient's address as our pharmacies do not ship Rx's to PO Box.</span>` :
+                `<span style="background-color:#FFFF00">${shippingAddress}</span>`}
+            </p>
+            
         </div>
 
                     `;
