@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Format the result
-        const result = `
+        const GPresult = `
             <h1>GPlans/FuturHealth Initial Visit Processing</h1>
             <h3><strong><span style="background-color:#FFFF00">Initial Visit</span></strong></h3>
                 <ul>
@@ -210,9 +210,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 <h3><strong>Refill Visit</strong></h3>
                 <ul>
-                <li>The patient is currently on X mg of Y for the last Z weeks.</li>
-                <li>Date of last injection:</li>
-                <li>How many injections has the patient taken on the current dose:</li>
+                    <li>The patient is currently on X mg of Y for the last Z weeks.</li>
+                    <li>Date of last injection:</li>
+                    <li>How many injections has the patient taken on the current dose:</li>
                 </ul>
 
             <h1>GPlans/FuturHealth Initial Visit Ai version</h1>
@@ -269,6 +269,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     `;
               
-       resultDiv.innerHTML = result;
+       resultDiv.innerHTML = GPresult;
     });
 });
